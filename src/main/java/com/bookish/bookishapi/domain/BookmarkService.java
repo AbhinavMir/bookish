@@ -1,5 +1,6 @@
 package com.bookish.bookishapi.domain;
 
+import com.bookish.bookishapi.domain.domain.BookmarksDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,9 +18,9 @@ public class BookmarkService {
     private final BookmarkRepository repository;
 
     @Transactional(readOnly = true)
-    public List<Bookmark> getBookmarks(Integer page) {
+    public BookmarksDTO getBookmarks(Integer page) {
         int PageNo = page <1 ? 0 : page - 1;
         Pageable pageable = PageRequest.of(PageNo, 2, Sort.Direction.DESC, "createdAt");
-        return repository.findAll(pageable).getContent();
+        return new BookmarksDTO(repository.findAll(pageable));
     }
 }

@@ -38,6 +38,7 @@ build/
 *.patch
 *.bak
 *.properties
+.env
 *.dat
 *.hprof
 *.releaseBackup
